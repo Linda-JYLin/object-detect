@@ -44,6 +44,12 @@ if ret:
                 cv2.rectangle(frame, (int(x - 1 / 2 * w), int(y - 1 / 2 * h)), (int(x + 1 / 2 * w), int(y + 1 / 2 * h)),
                               color=(0, 255, 0), thickness=3)
 
+                # 文字cv2.putText(image,text,左下角坐标,文字格式,字体大小,颜色,粗细,线条类型)
+                text = "person{:.3f}".format(result[4].item())
+                text_x=int(x - 1 / 2 * w)
+                text_y=int(y - 1 / 2 * h)
+                cv2.putText(frame,text,(text_x,text_y),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2,cv2.LINE_AA)
+
         # 写入帧
         out.write(frame)
         cv2.imshow('capture', frame)
